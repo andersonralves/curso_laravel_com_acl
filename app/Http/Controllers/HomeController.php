@@ -44,4 +44,12 @@ class HomeController extends Controller
 
         return view('update-post', compact('post'));
     }
+
+    public function rolesPermission()
+    {
+        $nameUser = auth()->user()->name;
+        $roles = auth()->user()->roles;
+
+        return view('roles-permissions', compact('nameUser', 'roles'));
+    }
 }

@@ -4,10 +4,11 @@
 <div class="container">
     @forelse($posts as $post)
 
-        <h1>{{ $post->title }}</h1>
-        <p>{{ $post->description }}</p><br>
-        <strong>Author: {{ $post->user->name }}</strong>
-        @can('update-post', $post)
+        @can('view_post', $post)
+            <h1>{{ $post->title }}</h1>
+            <p>{{ $post->description }}</p><br>
+            <strong>Author: {{ $post->user->name }}</strong>
+
             <a href="{{ url("/post/$post->id/update") }}">Editar</a>
         @endcan
     @empty
