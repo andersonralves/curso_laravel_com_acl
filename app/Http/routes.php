@@ -10,16 +10,28 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+/*
+Route::get('/home', 'SiteController@home');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/post/{id}/update', 'SiteController@update');
+
+Route::get('/roles-permissions', 'SiteController@rolesPermission');
+*/
+
+Route::group(['prefix' => 'painel'], function(){
+
+    // PostController
+
+    // PermissionController
+
+    // RoleController
+
+    // PainelController
+    Route::get('/', 'Painel\PainelController@index');
+
 });
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
-
-Route::get('/post/{id}/update', 'HomeController@update');
-
-Route::get('/roles-permissions', 'HomeController@rolesPermission');
+Route::get('/', 'SiteController@index');
 
