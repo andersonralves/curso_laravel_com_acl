@@ -21,6 +21,7 @@ Route::get('/roles-permissions', 'SiteController@rolesPermission');
 Route::group(['prefix' => 'painel'], function(){
 
     // PostController
+    Route::get('posts', 'Painel\PostController@index');
 
     // PermissionController
 
@@ -33,5 +34,5 @@ Route::group(['prefix' => 'painel'], function(){
 
 Route::auth();
 
-Route::get('/', 'SiteController@index');
+Route::get('/', 'Portal\SiteController@index');
 
