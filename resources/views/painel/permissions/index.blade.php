@@ -27,7 +27,7 @@
             <tr>
                 <th>Name</th>
                 <th>Description</th>
-                <th width="100px">Ações</th>
+                <th width="150px">Ações</th>
             </tr>
             </thead>
 
@@ -37,6 +37,9 @@
                     <td>{{ $permission->name }}</td>
                     <td>{{ $permission->description }}</td>
                     <td>
+                        <a href="{{ url("/painel/permissions/$permission->id/roles") }}" class="permission">
+                            <i class="fa fa-unlock"></i>
+                        </a>
                         <a href="{{ url("/painel/permissions/$permission->id/edit") }}" class="edit">
                             <i class="fa fa-pencil-square-o"></i>
                         </a>
