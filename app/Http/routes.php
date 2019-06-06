@@ -24,8 +24,14 @@ Route::group(['prefix' => 'painel'], function(){
     Route::get('posts', 'Painel\PostController@index');
 
     // PermissionController
+    Route::get('permissions', 'Painel\PermissionController@index');
 
     // RoleController
+    Route::get('roles', 'Painel\RoleController@index');
+    Route::get('roles/{id}/permissions', 'Painel\RoleController@permissions');
+
+    // RoleController
+    Route::get('users', 'Painel\UserController@index');
 
     // PainelController
     Route::get('/', 'Painel\PainelController@index');
