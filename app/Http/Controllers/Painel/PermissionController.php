@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Permission;
+use Gate;
 
 class PermissionController extends Controller
 {
@@ -15,17 +16,16 @@ class PermissionController extends Controller
     public function __construct( Permission $permission )
     {
         $this->permission = $permission;
+
+        if ( Gate::denies('adm') ) {
+            return abort(403, 'Não autorizado');
+        }
     }
+
 
     public function index()
     {
         $permissions = $this->permission->all();
-
-        if ( Gate::denies('adm') ) {
-            //abort(403, 'Not Permissions List User');
-
-            return redirect()->back();
-        }
 
         return view('painel.permissions.index', compact('permissions') );
     }

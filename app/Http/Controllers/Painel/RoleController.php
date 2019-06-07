@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Role;
+use Gate;
 
 class RoleController extends Controller
 {
@@ -15,7 +16,13 @@ class RoleController extends Controller
     public function __construct( Role $role )
     {
         $this->role = $role;
+
+        if ( Gate::denies('adm') ) {
+
+            return abort(403, 'Não autorizado');
+        }
     }
+
 
     public function index()
     {
@@ -27,12 +34,6 @@ class RoleController extends Controller
     public function permissions( $id )
     {
         $role = $this->role->find($id);
-
-        if ( Gate::denies('adm') ) {
-            //abort(403, 'Not Permissions List User');
-
-            return redirect()->back();
-        }
 
         $permissions = $role->permissions;
 
