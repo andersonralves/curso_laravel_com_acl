@@ -28,6 +28,12 @@ class RoleController extends Controller
     {
         $role = $this->role->find($id);
 
+        if ( Gate::denies('adm') ) {
+            //abort(403, 'Not Permissions List User');
+
+            return redirect()->back();
+        }
+
         $permissions = $role->permissions;
 
         return view('painel.roles.permissions', compact('role', 'permissions') );

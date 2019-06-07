@@ -21,6 +21,12 @@ class PermissionController extends Controller
     {
         $permissions = $this->permission->all();
 
+        if ( Gate::denies('adm') ) {
+            //abort(403, 'Not Permissions List User');
+
+            return redirect()->back();
+        }
+
         return view('painel.permissions.index', compact('permissions') );
     }
 
